@@ -7,6 +7,8 @@ import Login from "./component/Login"
 import TrCreate from "./component/TrCreate";
 import TrManage from "./component/TrManage";
 import UserManage from "./component/UserManage";
+import History from "./component/History"
+import Profile from "./component/Profile"
 
 import{BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
@@ -29,6 +31,8 @@ function App() {
               <Route exact strict path="/user-management"  element={<UserManage />}/>
               <Route exact strict path="/training-management"  element={<TrManage />}/>
               <Route exact strict path="/training-creation"  element={<TrCreate />}/>
+              <Route exact strict path="/profile" element={<Profile />} />
+              <Route exact strict path="/history" element={<History />} />
               <Route exact strict path="/" element={() => <div>ERROR 404</div>}/>
           </Routes>
 

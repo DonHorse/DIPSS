@@ -67,16 +67,13 @@ function Header(){
                                 </div>
                             </div>
                             <div className="submenu">
-                                <button className="submenubtn">Espace Administration <i className="fa fa-caret-down"></i></button>
+                                <button className="submenubtn">Espace client <i className="fa fa-caret-down"></i></button>
                                 <div className="submenu-content">
-                                    <NavLink  activeclassname="current" end to="/ArticleMaker">
-                                        <li >Article Maker</li>
+                                    <NavLink  activeclassname="current" end to="/profile">
+                                        <li >Profil</li>
                                     </NavLink>
-                                    <NavLink  activeclassname="current" end to="/QuestionnaireMaker">
-                                        <li >Questionnaire Maker</li>
-                                    </NavLink>
-                                    <NavLink  activeclassname="current" end to="/Administration">
-                                        <li >Administration</li>
+                                    <NavLink  activeclassname="current" end to="/historique">
+                                        <li >Historique des séances</li>
                                     </NavLink>
                                 </div>
                             </div>
