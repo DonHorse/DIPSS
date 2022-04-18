@@ -2,7 +2,7 @@
 // imports des librairies
 import '../style/Header.css'
 import { NavLink } from 'react-router-dom';
-import logo from '../img/Logo.png';
+import logo from '../img/Icone.ico';
 import Axios from "axios";//axios est une bibliothèque JS fonctionnant comme un client http, elle permet de communiquer avec des API avec des requêtes
 import React, {useEffect, useState} from "react";
 
@@ -40,39 +40,42 @@ function Header(){
     // Affichage des Navlink => App.js contient la gestion de ces Navlink = lien avec routing
     return(
         <div className="header">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+
             <nav>
-                <img className="logo" src={logo} alt="logo"/>
+
                 <div className="menuANDuser">
                     <div className="menu">
+
                         <ul className="menu-list">
-                            <NavLink exact activeClassName="current" to="/">
+                            <img className="logo" src={logo} alt="logo"/>
+                            <NavLink  activeclassname="current" end to="/">
                                 <li >Accueil</li>
                             </NavLink>
+
                             <div className="submenu">
-                                <button className="submenubtn">Promeo Langue Services <i className="fa fa-caret-down"></i></button>
+                                <button className="submenubtn">Espace Coach <i className="fa fa-caret-down"></i></button>
                                 <div className="submenu-content">
-                                    <NavLink exact activeClassName="current" to="/QuestionnaireList">
-                                        <li >Questionnaires</li>
+                                    <NavLink  activeclassname="current" end to="/user-management">
+                                        <li >Gestion utilisateurs</li>
                                     </NavLink>
-                                    <NavLink exact activeClassName="current" to="/Article">
-                                        <li >Articles</li>
+                                    <NavLink  activeclassname="current" end to="/training-management">
+                                        <li >Gestions séances</li>
                                     </NavLink>
-                                    <NavLink exact activeClassName="current" to="/Contact">
-                                        <li >Contacts</li>
+                                    <NavLink  activeclassname="current" end to="/training-creation">
+                                        <li >Création de séances</li>
                                     </NavLink>
                                 </div>
                             </div>
                             <div className="submenu">
                                 <button className="submenubtn">Espace Administration <i className="fa fa-caret-down"></i></button>
                                 <div className="submenu-content">
-                                    <NavLink exact activeClassName="current" to="/ArticleMaker">
+                                    <NavLink  activeclassname="current" end to="/ArticleMaker">
                                         <li >Article Maker</li>
                                     </NavLink>
-                                    <NavLink exact activeClassName="current" to="/QuestionnaireMaker">
+                                    <NavLink  activeclassname="current" end to="/QuestionnaireMaker">
                                         <li >Questionnaire Maker</li>
                                     </NavLink>
-                                    <NavLink exact activeClassName="current" to="/Administration">
+                                    <NavLink  activeclassname="current" end to="/Administration">
                                         <li >Administration</li>
                                     </NavLink>
                                 </div>
@@ -83,14 +86,14 @@ function Header(){
                     <div className="user-gestion">
                         <ul className="user-gestion-list">
                             {loginStat === false && (
-                                <NavLink exact activeClassName="current" to="/Login">
+                                <NavLink  activeclassname="current" end to="/Login">
                                     <li >Login</li>
                                 </NavLink>
                             )}
                             {loginStat === true && (
                                 <button onClick={Logout}>Logout</button>
                             )}
-                            <NavLink exact activeClassName="current" to="/Register">
+                            <NavLink  activeclassname="current" end to="/Register">
                                 <li >Register</li>
                             </NavLink>
                         </ul>

@@ -7,7 +7,7 @@ export default function Registration() {
     const [firstnameReg, setFirstnameReg] = useState("");
     const [lastnameReg, setLastnameReg] = useState("");
     const [emailReg, setEmailReg] = useState("");
-    const [roleReg, setRoleReg] = useState("user");
+    const [roleReg, setRoleReg] = useState(0);
     const [passwordReg, setPasswordReg] = useState("");
 
     Axios.defaults.withCredentials = true;
@@ -23,7 +23,6 @@ export default function Registration() {
             console.log(response);
         });
     };
-
 
 
     return (
@@ -56,8 +55,7 @@ export default function Registration() {
                 <label>Type d'utilisateur :</label>
                 <select onChange={(e) => {
                     setRoleReg(e.target.value); }}>
-                    <option value="user">Utilisateur</option>
-                    <option value="coach">Coach</option>
+                    <option value={2}>Utilisateur</option>
                 </select>
 
                 <label>Password</label>

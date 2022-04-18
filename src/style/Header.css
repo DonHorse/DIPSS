@@ -3,6 +3,11 @@
     font-family: "Fira Sans", Arial, sans-serif;
 }
 
+.logo{
+    max-height: 50px;
+
+}
+
 nav {
     background-color: #095776;
     overflow: hidden;
