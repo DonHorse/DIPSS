@@ -1,0 +1,114 @@
+/* Nav bar on header*/
+* {
+    font-family: "Fira Sans", Arial, sans-serif;
+}
+
+nav {
+    background-color: #095776;
+    overflow: hidden;
+    position: sticky;
+
+}
+
+.menu {
+    overflow: hidden;
+    background-color: #095776;
+}
+
+.user-gestion, .user-gestion button {
+    overflow: hidden;
+    background-color: #095776;
+}
+
+.menuANDuser {
+    justify-content: space-between;
+    display: flex;
+}
+
+.user-gestion a {
+    float: left;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.user-gestion button {
+    float: left;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+/* Navlinks */
+.menu a {
+    float: left;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* submenu */
+.submenu {
+    float: left;
+    overflow: hidden;
+}
+
+/* submenu button */
+.submenu .submenubtn {
+    font-size: 20px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 24px 16px;
+    background-color: inherit;
+    font-family: inherit;
+
+}
+
+/* Add a red background color to navigation links on hover */
+.menu a:hover, .submenu:hover .submenubtn, .user-gestion button:hover {
+    background-color: red;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.user-gestion a:hover{
+    background-color: red;
+    border-radius: 10px 10px 10px 10px;
+}
+
+
+/* position des sous menus*/
+.submenu-content {
+    display: none;
+    position: fixed;
+    left: 0;
+    background-color: red;
+    width: 100%;
+    z-index: 1;
+    border: 1px solid #03353b;
+}
+
+/* style des navlink */
+.submenu-content a {
+    float: left;
+    color: white;
+    text-decoration: none;
+}
+
+/* Add a grey background color on hover */
+.submenu-content a:hover {
+    background-color: #eee;
+    color: black;
+}
+
+/* When you move the mouse over the submenu container, open the submenu content */
+.submenu:hover .submenu-content {
+    display: block;
+}
