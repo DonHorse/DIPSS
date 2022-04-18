@@ -7,7 +7,7 @@ import '../style/App.css'
 
 // fonction du pied de page
 
-function Footer() {
+function History() {
 
 
     // Affichage de la fonction Footer
@@ -28,4 +28,4 @@ function Footer() {
 
 //export pour routing
 
-export default Footer;
+export default History;
