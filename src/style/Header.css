@@ -9,7 +9,7 @@
 }
 
 nav {
-    background-color: #095776;
+    background-color: #2EA3F2;
     overflow: hidden;
     position: sticky;
 
@@ -17,12 +17,12 @@ nav {
 
 .menu {
     overflow: hidden;
-    background-color: #095776;
+    background-color: #2EA3F2;
 }
 
 .user-gestion, .user-gestion button {
     overflow: hidden;
-    background-color: #095776;
+    background-color: #2EA3F2;
 }
 
 .menuANDuser {
@@ -77,14 +77,14 @@ nav {
 
 }
 
-/* Add a red background color to navigation links on hover */
+/* Add a #FC680B background color to navigation links on hover */
 .menu a:hover, .submenu:hover .submenubtn, .user-gestion button:hover {
-    background-color: red;
+    background-color: #FC680B;
     border-radius: 10px 10px 10px 10px;
 }
 
 .user-gestion a:hover{
-    background-color: red;
+    background-color: #FC680B;
     border-radius: 10px 10px 10px 10px;
 }
 
@@ -94,7 +94,7 @@ nav {
     display: none;
     position: fixed;
     left: 0;
-    background-color: red;
+    background-color: #FC680B;
     width: 100%;
     z-index: 1;
     border: 1px solid #03353b;

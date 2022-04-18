@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import "../style/App.css";
+import {Link} from "react-router-dom";
 
 //export pour routing
 export default function Registration() {
     const [firstnameReg, setFirstnameReg] = useState("");
     const [lastnameReg, setLastnameReg] = useState("");
     const [emailReg, setEmailReg] = useState("");
-    const [roleReg, setRoleReg] = useState(0);
+    const [roleReg, setRoleReg] = useState(2);
     const [passwordReg, setPasswordReg] = useState("");
 
     Axios.defaults.withCredentials = true;
@@ -20,7 +21,7 @@ export default function Registration() {
             password: passwordReg,
             role : roleReg,
         }).then((response) => {
-            console.log(response);
+            window.alert(response);
         });
     };
 
@@ -29,23 +30,23 @@ export default function Registration() {
 
         <div className="registration-form">
             <form>
-                <h1>Registration</h1>
-                <label>First Name</label>
+                <h1>S'enregistrer</h1>
                 <input
+                    placeholder="Prénom"
                     type="text"
                     onChange={(e) => {
                         setFirstnameReg(e.target.value);
                     }}
                 />
-                <label>Last Name</label>
                 <input
+                    placeholder="Nom"
                     type="text"
                     onChange={(e) => {
                         setLastnameReg(e.target.value);
                     }}
                 />
-                <label>Email</label>
                 <input
+                    placeholder="email : xyz@mail.ex"
                     type="email"
                     onChange={(e) => {
                         setEmailReg(e.target.value);
@@ -54,19 +55,24 @@ export default function Registration() {
 
                 <label>Type d'utilisateur :</label>
                 <select onChange={(e) => {
-                    setRoleReg(e.target.value); }}>
+                    setRoleReg(parseInt(e.target.value)); }}>
                     <option value={2}>Utilisateur</option>
                 </select>
 
-                <label>Password</label>
+
                 <input
+                    placeholder="Mot de passe"
                     type="password"
-                    onChange={(e) => {
+                    onChange={(e ) => {
                         setPasswordReg(e.target.value);
                     }}
                 />
                 <button  onClick={register}> Register </button>
+
             </form>
+            <br/>
+            <span>Déjà enregistré ? <Link to="/Login">Se connecter</Link></span>
+
         </div>
 
 

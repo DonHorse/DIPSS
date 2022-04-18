@@ -1,6 +1,7 @@
 // Formulaire de connexion à une session
 // imports des librairies
 import React, { useEffect, useState } from "react";
+import {Link} from "react-router-dom";
 import Axios from "axios";
 
 // fonction contenant le formulaire de login
@@ -55,6 +56,8 @@ function Login() {
                 />
                 <button onClick={login} > Login </button>
             </form>
+            <br/>
+            <span>Pas encore enregistré ? <Link to="/Register">S'enregistrer</Link></span>
             <div>
                 <h1>{loginStatus}</h1>
             </div>
