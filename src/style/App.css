@@ -230,7 +230,9 @@ a.current{
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .admin-form input[type="reset"],
-.admin-form input[type="text"]{
+.admin-form input[type="text"],
+.admin-form input,
+.admin-form select{
   width: 100%;
   padding: 15px;
   border: 1px solid #dddddd;
