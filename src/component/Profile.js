@@ -24,6 +24,7 @@ function Profile() {
     //const [lastUpdate, setLastUpdate] = useState('');
     const [PlaceholderInfo, setPlaceholderInfo ] = useState([]);
 
+
     Axios.defaults.withCredentials = true;
 
 // requête à l'API GET (info si connexion) ressort l'id
@@ -40,11 +41,18 @@ function Profile() {
     // requête à l'API POST (GET des messages en placeholder et UPDATE une fois validé )
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/DIPSS/profile",{
-            userId : userId
+        Axios.get("http://localhost:3001/DIPSS/profile", {
+            data :{userId : userId}
         }).then((response) => {
             setPlaceholderInfo(response.data);
-            console.log(response.data);
+            setGender(response.data[0].gender);
+            setBirthday(response.data[0].birthday);
+            setWeight(response.data[0].weight);
+            setHeight(response.data[0].height);
+            setContraindication(response.data[0].contraindication);
+            setNote(response.data[0].note);
+            setImg(response.data[0].img);
+            console.log(response.data)
         })
     },[userId]);
 
@@ -66,76 +74,96 @@ function Profile() {
     };
 
 
-
     // Affichage du formulaire
     return(
-        <div className="admin-form">
-            <form>
-                <label htmlFor="title">Titre de page : </label>
+            <div className="mainBodyText">
+                <div className="admin-form">
+                    <form>
+                        <h1>Vos informations</h1>
+                        <label>Genre : {PlaceholderInfo.map((val) => { return (val.gender)})}</label>
+                        <br/>
+                        <label>Date de naissance : {PlaceholderInfo.map((val) => { return (val.birthday).slice(0,10)})}</label>
+                        <br/>
+                        <label>Poids : {PlaceholderInfo.map((val) => { return (val.weight)})}</label>
+                        <br/>
+                        <label>Taille : {PlaceholderInfo.map((val) => { return (val.height)})}</label>
+                        <br/>
+                        <label>Contre-indications : {PlaceholderInfo.map((val) => { return (val.contraindication)})}</label>
+                        <br/>
+                        <label>Note : {PlaceholderInfo.map((val) => { return (val.note)})}</label>
+                        <br/>
+                        <label>Dernière mise à jour du profil : {PlaceholderInfo.map((val) => { return (val.last_update).slice(0,10)})}</label>
+                    </form>
+                </div>
+                <br/>
+                <div className="admin-form">
+                    <form>
 
-                <label>Genre :</label>
-                <select
-                    placeholder= {PlaceholderInfo.map((val) => { return (val.gender)})}
-                    onChange={(e) => {
-                    setGender(e.target.value); }}>
-                    <option value='M'>Homme</option>
-                    <option value='F'>Femme</option>
-                </select>
+                        <label>Modifier vos informations</label>
+                        <br/>
+                        <p>Genre :</p>
+                        <select
+                            onChange={(e) => {
+                            setGender(e.target.value); }}
+                            >
+                            <option value ='M'>Homme</option>
+                            <option value='F'>Femme</option>
+                        </select>
+                        <p>Date de naissance :</p>
+                        <input
+                            type="date"
+                            name="birthday"
+                            id="birthday"
+                            onChange={(e) => {
+                                setBirthday(e.target.value);
+                            }}/>
+                        <p>Poids :</p>
+                        <input
+                            type="number"
+                            name="weight"
+                            id="weight"
+                            placeholder= {PlaceholderInfo.map((val) => { return (val.weight)})}
+                            onChange={(e) => {
+                                setWeight(e.target.value);
+                            }}/>
+                        <p>Taille :</p>
+                        <input
+                            type="number"
+                            name="height"
+                            id="height"
+                            placeholder= {PlaceholderInfo.map((val) => { return (val.height)})}
+                            onChange={(e) => {
+                                setHeight(e.target.value);
+                            }}/>
+                        <p>Contre-indication :</p>
+                        <textarea
+                            name="contraindication"
+                            id="contraindication"
+                            onChange={(e) => {
+                                setContraindication(e.target.value);
+                            }}/>
+                        <p>Note : </p>
+                        <textarea
+                            name="note"
+                            id="note"
+                            onChange={(e) => {
+                                setNote(e.target.value);
+                            }}/>
+                        <p>Url de l'image de profil</p>
+                        <input
+                            type="text"
+                            name="image"
+                            id="image"
+                            onChange={(e) => {
+                                setImg(e.target.value);
+                            }}/>
 
-                <input
-                    type="date"
-                    name="birthday"
-                    id="birthday"
-                    placeholder= {PlaceholderInfo.map((val) => { return (val.birthday)})}
-                    onChange={(e) => {
-                        setBirthday(e.target.value);
-                    }}/>
-                <input
-                    type="number"
-                    name="weight"
-                    id="weight"
-                    placeholder= {PlaceholderInfo.map((val) => { return (val.weight)})}
-                    onChange={(e) => {
-                        setWeight(e.target.value);
-                    }}/>
-                <input
-                    type="number"
-                    name="height"
-                    id="height"
-                    placeholder= {PlaceholderInfo.map((val) => { return (val.height)})}
-                    onChange={(e) => {
-                        setHeight(e.target.value);
-                    }}/>
-                <label htmlFor="text">Contre-indication(s) : </label>
-                <textarea
-                    name="contraindication"
-                    id="contraindication"
-                    placeholder={PlaceholderInfo.map((val) => { return (val.contraindication)})}
-                    onChange={(e) => {
-                        setContraindication(e.target.value);
-                    }}/>
-                <label htmlFor="text">Notes divers: </label>
-                <textarea
-                    name="note"
-                    id="note"
-                    placeholder={PlaceholderInfo.map((val) => { return (val.note)})}
-                    onChange={(e) => {
-                        setNote(e.target.value);
-                    }}/>
-                <input
-                    type="text"
-                    name="image"
-                    id="image"
-                    placeholder= {PlaceholderInfo.map((val) => { return (val.img)})}
-                    onChange={(e) => {
-                        setImg(e.target.value);
-                    }}/>
+                        <button type="submit" onClick={updateProfile}>Valider les modifications</button>
 
-                <button type="submit" onClick={updateProfile}>Valider les modifications</button>
-
-                <input type="reset"/>
-            </form>
-        </div>
+                        <input type="reset"/>
+                    </form>
+                </div>
+            </div>
     )
 }
 
