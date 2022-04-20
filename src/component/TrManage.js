@@ -9,7 +9,8 @@ import Axios from "axios";
 
 function TrManage() {
 
-    const [trainingList, setTrainingList] = useState([])
+    const [trainingList, setTrainingList] = useState([]);
+    const [userSelectedId, setUserSelectedId] = useState(0);
 
     Axios.defaults.withCredentials = true;
 
@@ -35,21 +36,19 @@ function TrManage() {
     // fonctions pour gestion des séances
 
     const trainingToUser = (id_training, id_user) => {
-        Axios.post("http://localhost:3001/DIPSS/training-assign-to-user", {
+        Axios.put("http://localhost:3001/DIPSS/training/assign/user", {
             id_training : id_training,
             id_user : id_user,
         }).then((response) => {
-
-            window.alert(response);
+            window.prompt(response);
         });
     };
 
-    const trainingValidation = () => {
-        Axios.post("http://localhost:3001/DIPSS/training-validation", {
-
+    const trainingValidation = (id_training) => {
+        Axios.put("http://localhost:3001/DIPSS/training/validation", {
+            id_training : id_training,
         }).then((response) => {
-
-            window.alert(response);
+            window.prompt(response);
         });
     };
 
@@ -86,8 +85,15 @@ function TrManage() {
 
                         </div>
                         <div className="actions">
-                            <button onClick={trainingToUser}> Assigner </button>
-                            <button onClick={trainingValidation}> Valider / Invalider</button>
+                            <button onClick={trainingToUser(val.id, userSelectedId)}> Assigner </button>
+                            <input
+                                type="number"
+                                name="user-selected"
+                                id="user-selected"
+                                onChange={(e) => {
+                                    setUserSelectedId(e.target.value);
+                                }}/>
+                            <button onClick={trainingValidation(val.id)}> Valider </button>
                         </div>
                     </div>
                 )
