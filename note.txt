@@ -1,0 +1,8 @@
+reflexion sql pour assignement des exo et séances :
+
+1er test : validé
+SELECT * FROM exercise_assignment
+INNER JOIN exercise_exercise_assignment
+ON exercise_assignment.id=exercise_exercise_assignment.id_exercise_assignment
+WHERE exercise_exercise_assignment.id_exercise=1
+

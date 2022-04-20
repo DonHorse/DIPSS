@@ -40,7 +40,7 @@ function TrManage() {
             id_training : id_training,
             id_user : id_user,
         }).then((response) => {
-            window.prompt(response);
+            window.alert(response);
         });
     };
 
@@ -48,7 +48,7 @@ function TrManage() {
         Axios.put("http://localhost:3001/DIPSS/training/validation", {
             id_training : id_training,
         }).then((response) => {
-            window.prompt(response);
+            window.alert(response);
         });
     };
 
@@ -85,15 +85,17 @@ function TrManage() {
 
                         </div>
                         <div className="actions">
-                            <button onClick={trainingToUser(val.id, userSelectedId)}> Assigner </button>
+
+                            <button  onClick={() => trainingToUser(val.id, userSelectedId)}> Assigner </button>
                             <input
+                                placeholder="id de l'utilisateur"
                                 type="number"
                                 name="user-selected"
                                 id="user-selected"
                                 onChange={(e) => {
                                     setUserSelectedId(e.target.value);
                                 }}/>
-                            <button onClick={trainingValidation(val.id)}> Valider </button>
+                            <button onClick={() => trainingValidation(val.id)}> Valider </button>
                         </div>
                     </div>
                 )
@@ -102,7 +104,7 @@ function TrManage() {
 
         </div>
 
-    )
+    );
 }
 
 //export pour routing
