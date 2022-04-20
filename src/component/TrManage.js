@@ -1,21 +1,102 @@
-// pied de page avec information modifiable par l'admin
-
 // imports des librairies
 
-import '../style/App.css'
+import '../style/App.css';
+import React, {useEffect, useState} from "react";
+import Axios from "axios";
+//import {Link} from "react-router-dom";
 
-
-// fonction du pied de page
+// fonction de gestion des séances
 
 function TrManage() {
 
+    const [trainingList, setTrainingList] = useState([])
 
-    // Affichage de la fonction Footer
-    return (
-        <div className="tr-manage">
-            <p> oui </p>
+    Axios.defaults.withCredentials = true;
+
+    // vérif admin
+    useEffect(() => {
+        Axios.get("http://localhost:3001/DIPSS/login").then((response) => {
+            if (response.data.loggedIn === true && response.data.user[0].role === 1) {
+
+            }else {
+                window.location.href = "/Login";
+                window.alert("veuillez vous connecter à un compte admin")
+            }
+        });
+    }, []);
+
+    // requête à l'API GET (renvoie tous les séances)
+    useEffect(() => {
+        Axios.get("http://localhost:3001/DIPSS/training-list").then((response) => {
+            setTrainingList(response.data);
+        });
+    },[trainingList]);
+
+    // fonctions pour gestion des séances
+
+    const trainingToUser = (id_training, id_user) => {
+        Axios.post("http://localhost:3001/DIPSS/training-assign-to-user", {
+            id_training : id_training,
+            id_user : id_user,
+        }).then((response) => {
+
+            window.alert(response);
+        });
+    };
+
+    const trainingValidation = () => {
+        Axios.post("http://localhost:3001/DIPSS/training-validation", {
+
+        }).then((response) => {
+
+            window.alert(response);
+        });
+    };
+
+    // Gestion de l'affichage des séances
+    return(
+        <div>
+            <h1>Gestion des séances : </h1>
+
+            {trainingList.map((val) => {
+                return(
+                    <div className="training">
+                        <div>
+                            <h2>{val.title}</h2>
+                        </div>
+                        <div className="training-content">
+                            <div>
+                                <p>Objetif : </p>{val.objectif}
+                            </div>
+                            <div>
+                                <p>Assigné à </p>{val.id_user}
+                            </div>
+                            <div>
+                                <p>Pour le </p>{(val.date)}
+                            </div>
+                            <div>
+                                <p>Durée : </p>{(val.duration)}
+                            </div>
+                            <div>
+                                <p>Validation : </p>{(val.validation)}
+                            </div>
+                            <div>
+                                {(val.note)}
+                            </div>
+
+                        </div>
+                        <div className="actions">
+                            <button onClick={trainingToUser}> Assigner </button>
+                            <button onClick={trainingValidation}> Valider / Invalider</button>
+                        </div>
+                    </div>
+                )
+
+            })}
+
         </div>
-    );
+
+    )
 }
 
 //export pour routing

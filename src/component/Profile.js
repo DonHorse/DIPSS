@@ -21,7 +21,7 @@ function Profile() {
     const [note, setNote] = useState('');
     //const [trNumber, setTrNumber] = useState(0);
     const [img, setImg] = useState('');
-    //const [lastUpdate, setLastUpdate] = useState('');
+    // const [lastUpdate, setLastUpdate] = useState('');
     const [PlaceholderInfo, setPlaceholderInfo ] = useState([]);
 
 
@@ -46,13 +46,14 @@ function Profile() {
         }).then((response) => {
             setPlaceholderInfo(response.data);
             setGender(response.data[0].gender);
-            setBirthday(response.data[0].birthday);
+            setBirthday((response.data[0].birthday).substring(0,10));
             setWeight(response.data[0].weight);
             setHeight(response.data[0].height);
             setContraindication(response.data[0].contraindication);
             setNote(response.data[0].note);
-            setImg(response.data[0].img);
-            console.log(response.data)
+            setImg(response.data[0].image);
+            // setLastUpdate(((response.data[0].last_update).substring(0,10)) +' '+ (response.data[0].last_update).substring(11,19));
+
         })
     },[userId]);
 
@@ -65,7 +66,8 @@ function Profile() {
             height : height,
             contraindication : contraindication,
             note : note,
-            img : img
+            img : img,
+            // lastUpdate : lastUpdate,
         }).then(() => {
             alert("modifications enregistrées !");
         }).catch((error) => {

@@ -9,6 +9,8 @@ import TrManage from "./component/TrManage";
 import UserManage from "./component/UserManage";
 import History from "./component/History"
 import Profile from "./component/Profile"
+import ExCreate from "./component/ExCreate";
+import AssiCreate from "./component/AssiCreate";
 
 import{BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
@@ -31,6 +33,8 @@ function App() {
               <Route exact strict path="/user-management"  element={<UserManage />}/>
               <Route exact strict path="/training-management"  element={<TrManage />}/>
               <Route exact strict path="/training-creation"  element={<TrCreate />}/>
+              <Route exact strict path="/exercise-creation"  element={<ExCreate />}/>
+              <Route exact strict path="/assignment-creation"  element={<AssiCreate />}/>
               <Route exact strict path="/profile" element={<Profile />} />
               <Route exact strict path="/history" element={<History />} />
               <Route exact strict path="/" element={() => <div>ERROR 404</div>}/>
