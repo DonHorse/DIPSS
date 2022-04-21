@@ -17,6 +17,7 @@ function AssiCreate() {
     const [distance, setDistance] = useState(0);
     const [duration, setDuration] = useState("");
     const [rest, setRest] = useState("");
+    const [idTraining, setIdTraining] = useState("");
 
 
     Axios.defaults.withCredentials = true;
@@ -40,6 +41,7 @@ function AssiCreate() {
             distance : distance,
             duration : duration,
             rest : rest,
+            idTraining : idTraining,
 
         }).then((response) => {
 
@@ -117,6 +119,16 @@ function AssiCreate() {
                     }}
                 />
                 <br/>
+
+                <label> id séance</label>
+                <input
+                    type="number"
+                    onChange={(e) => {
+                        setIdTraining(e.target.value);
+                    }}
+                />
+                <br/>
+
 
                 <button onClick={createAssignement}> Ajouter ! </button>
 

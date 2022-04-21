@@ -41,7 +41,7 @@ function App() {
               <Route exact strict path="/exercise-creation"  element={<ExCreate />}/>
               <Route exact strict path="/assignment-creation"  element={<AssiCreate />}/>
               <Route exact strict path="/profile" element={<Profile />} />
-              <Route exact strict path="/history" element={<History />} />
+              <Route exact strict path="/historique" element={<History />} />
               <Route exact strict path="/" element={() => <div>ERROR 404</div>}/>
           </Routes>
 

@@ -5,7 +5,7 @@ import React, {useEffect, useState} from "react";
 import Axios from "axios";
 //import {Link} from "react-router-dom";
 
-// fonction de gestion des utilisateurs
+// fonction de gestion des assignment
 
 function AssignmentList() {
 
@@ -25,7 +25,7 @@ function AssignmentList() {
         });
     }, []);
 
-    // requête à l'API GET (renvoie tous les utilisateurs)
+    // requête à l'API GET (renvoie tous les assignment)
     useEffect(() => {
         Axios.get("http://localhost:3001/DIPSS/assignment-list").then((response) => {
             setAssignmentList(response.data);
@@ -34,7 +34,7 @@ function AssignmentList() {
 
 
 
-    // Gestion de l'affichage des assignment
+    // Gestion de l'affichage des assignments
     return(
         <div>
             <h1>Liste des assignments: </h1>
