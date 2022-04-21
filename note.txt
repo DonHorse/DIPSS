@@ -10,13 +10,14 @@ WHERE exercise_exercise_assignment.id_exercise=1
 ----------------------------
 2ème test : pas encore testé
 
-SELECT * FROM exercise
-INNER JOIN training_exercise
-ON exercise.id=training_exercise.id_exercise
-WHERE training_exercise.id_training=6
+SELECT * FROM exercise INNER JOIN training_exercise ON exercise.id=training_exercise.id_exercise WHERE training_exercise.id_training = ?
 
 ----------------------------
 3ème test : pas encore testé
 
-remplacer les INNER JOIN par des LEFT JOIN (n'obtenir que les champs de la première table)
+SELECT * FROM exercise_assignment
+LEFT JOIN exercise_exercise_assignment
+ON exercise_assignment.id=exercise_exercise_assignment.id_exercise_assignment
+WHERE exercise_exercise_assignment.id_exercise=?
+
 

@@ -11,8 +11,11 @@ import History from "./component/History"
 import Profile from "./component/Profile"
 import ExCreate from "./component/ExCreate";
 import AssiCreate from "./component/AssiCreate";
+import AssignmentList from "./component/AssignmentList";
+import ExManage from "./component/ExManage";
 
 import{BrowserRouter as Router, Route, Routes} from "react-router-dom";
+
 
 
 // la fonction App est afficher sur le front end, et sert ici de page de routing
@@ -32,6 +35,8 @@ function App() {
               <Route exact strict path="/Register"  element={<Register />}/>
               <Route exact strict path="/user-management"  element={<UserManage />}/>
               <Route exact strict path="/training-management"  element={<TrManage />}/>
+              <Route exact strict path="/exercise-management"  element={<ExManage />}/>
+              <Route exact strict path="/assignment-management"  element={<AssignmentList />}/>
               <Route exact strict path="/training-creation"  element={<TrCreate />}/>
               <Route exact strict path="/exercise-creation"  element={<ExCreate />}/>
               <Route exact strict path="/assignment-creation"  element={<AssiCreate />}/>

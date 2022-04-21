@@ -20,7 +20,7 @@ function Header(){
             if (response) {
                 setLoginStat(false);
                 console.log("logout");
-                window.location = "/";
+                window.location = "/login";
 
             }
         });
@@ -48,9 +48,6 @@ function Header(){
 
                         <ul className="menu-list">
                             <img className="logo" src={logo} alt="logo"/>
-                            <NavLink  activeclassname="current" end to="/">
-                                <li >Accueil</li>
-                            </NavLink>
 
                             <div className="submenu">
                                 <button className="submenubtn">Espace Coach <i className="fa fa-caret-down"></i></button>
@@ -63,6 +60,12 @@ function Header(){
                                     </NavLink>
                                     <NavLink  activeclassname="current" end to="/training-creation">
                                         <li >Création de séances</li>
+                                    </NavLink>
+                                    <NavLink  activeclassname="current" end to="/exercise-management">
+                                        <li >Gestion exercises</li>
+                                    </NavLink>
+                                    <NavLink  activeclassname="current" end to="/assignment-management">
+                                        <li >Gestion Assignments </li>
                                     </NavLink>
                                 </div>
                             </div>

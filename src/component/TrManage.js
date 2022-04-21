@@ -11,6 +11,8 @@ function TrManage() {
 
     const [trainingList, setTrainingList] = useState([]);
     const [userSelectedId, setUserSelectedId] = useState(0);
+    const [exoSelectedId, setExoSelectedId] = useState(0);
+
 
     Axios.defaults.withCredentials = true;
 
@@ -52,6 +54,15 @@ function TrManage() {
         });
     };
 
+    const exoToTraining = (id_training, id_exercise) => {
+        Axios.post("http://localhost:3001/DIPSS/training/assign/exercise", {
+            id_training : id_training,
+            id_exercise : id_exercise,
+        }).then((response) => {
+            window.alert(response);
+        });
+    };
+
     // Gestion de l'affichage des séances
     return(
         <div>
@@ -85,17 +96,34 @@ function TrManage() {
 
                         </div>
                         <div className="actions">
-
-                            <button  onClick={() => trainingToUser(val.id, userSelectedId)}> Assigner </button>
-                            <input
-                                placeholder="id de l'utilisateur"
-                                type="number"
-                                name="user-selected"
-                                id="user-selected"
-                                onChange={(e) => {
-                                    setUserSelectedId(e.target.value);
-                                }}/>
                             <button onClick={() => trainingValidation(val.id)}> Valider </button>
+                            <br/>
+                            <div>
+                                <br/>
+                                <input
+                                    placeholder="id de l'utilisateur"
+                                    type="number"
+                                    name="user-selected"
+                                    id="user-selected"
+                                    onChange={(e) => {
+                                        setUserSelectedId(e.target.value);
+                                    }}/>
+                                <button  onClick={() => trainingToUser(val.id, userSelectedId)}> Assigner Utilisateur</button>
+                            </div>
+                            <br/>
+                            <div>
+                                <input
+                                    placeholder="id de l'exercice"
+                                    type="number"
+                                    name="exo-selected"
+                                    id="exo-selected"
+                                    onChange={(e) => {
+                                        setExoSelectedId(e.target.value);
+                                    }}/>
+                                <button onClick={() => exoToTraining(val.id, exoSelectedId)}>Assigner exercice</button>
+                            </div>
+
+
                         </div>
                     </div>
                 )
