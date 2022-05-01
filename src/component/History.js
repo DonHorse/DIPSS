@@ -4,15 +4,13 @@ import '../style/App.css';
 import React, {useEffect, useState} from "react";
 import Axios from "axios";
 
+
 //import {Link} from "react-router-dom";
 
 // fonction d'affichage des séances détaillé par utilisateur
 
 function History() {
 
-    // const [userId, setUserId] = useState(0);
-    // const [idTraining, setIdTraining] = useState(0);
-    // const [idExercise, setIdExercise] = useState(0);
     const [trainingList, setTrainingList] = useState([]);
     const [exoList, setExoList] = useState([]);
     const [assignList, setAssignList] = useState([]);
@@ -36,31 +34,29 @@ function History() {
         Axios.get("http://localhost:3001/DIPSS/training-list/user", {
         }).then((response) => {
             setTrainingList(response.data);
-            console.log(trainingList);
-        });
-    }, [trainingList]);
 
-    const searchExo = (id_training) => {
-        Axios.get("http://localhost:3001/DIPSS/exercise-list/training", {
-            data :{id_training : id_training}
+        });
+    }, []);
+
+    const listex = (id_tr) => {
+        Axios.post("http://localhost:3001/DIPSS/exercise-list/training", {
+            id_tr : id_tr,
         }).then((response) => {
             setExoList(response.data);
             console.log(exoList);
 
         },[]);
     };
-
-    const searchAssign = (idExercise, idTraining) => {
-        Axios.get("http://localhost:3001/DIPSS/exercise-assignment-list/exercise-tr", {
-            data: {
-                idExercise: idExercise,
-                idTraining: idTraining,
-            }
+    const listassign = (id_tr, id_ex) => {
+        Axios.post("http://localhost:3001/DIPSS/exercise-assignment-list/exercise-tr", {
+                id_tr : id_tr,
+                id_ex : id_ex,
         }).then((response) => {
+            console.log(id_tr, id_ex);
             setAssignList(response.data);
+            console.log(assignList);
         },[]);
     };
-
 
 
 
@@ -72,7 +68,7 @@ function History() {
             {trainingList.map((val1) => {
 
                 return(
-                    <div className="training">
+                    <div className="training-container">
                         <div className="training-detail">
                             <div>
                                 <h2>{val1.title}</h2>
@@ -84,26 +80,29 @@ function History() {
                                 <p>Date: {val1.date}</p>
                             </div>
                         </div>
-                        {() => searchExo(val1.id)}
-                        <div className="exercise" >
-
-                            {exoList.map((val2) => {
+                        <div className="exercises-detail">
+                            <h3>Liste des exercicses pour {val1.title} </h3>
+                            <button onClick={() => {listex(val1.id)}}>Afficher exercices</button>
+                            {exoList.map((val) => {
                                 return(
-                                    <div className="exercice">
+                                    <div className="training">
                                         <div>
-                                            <img width='100px' src={val2.image} alt="img-exo" />;
-                                            <h2>{val2.title}</h2>
+                                            <img width='100px' src={val.image} alt="img-exo" />;
+                                            <h2>{val.id}</h2>
+                                            <h2>{val.title}</h2>
                                         </div>
                                         <div className="training-content">
                                             <div>
-                                                <p>type : </p>{val2.type}
+                                                <p>type : </p>{val.type}
                                             </div>
                                             <div>
-                                                <p>Description :  </p>{val2.description}
+                                                <p>Description :  </p>{val.description}
                                             </div>
                                         </div>
-                                        <div>
-                                            {() => searchAssign(val2.id, val1.id)}
+                                        <div className="assignments-detail">
+                                            <h3>Liste des exercicses pour {val1.title} </h3>
+                                            <button onClick={() => {listassign(val1.id,val.id)}}>Afficher assignement</button>
+
                                             {assignList.map((val3) => {
                                                 return(
                                                     <div className="détail">
@@ -129,11 +128,9 @@ function History() {
                                                 )
                                             })}
                                         </div>
-
                                     </div>
-                                )
-                            })}
 
+                                )})}
                         </div>
 
                     </div>
